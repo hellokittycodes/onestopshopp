@@ -1,3 +1,3 @@
 env/ 
 FLASK_ENV=development
-FLASK_APP=onestopshop
+FLASK_APP=onestopshopp
