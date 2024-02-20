@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The ARC</title>
+  <style>
+/* 
+
+cannon's colors : #87212e
+
+cannon's fonts : 
+
+*/ 
+
+/* ageo font family definition */ 
+  .font-face {
+    font-family: 'ageo'; 
+    src: url('fonts/ageo/ageo-reg.otf') format('otf')
+  }
+  
+  .font-face {
+    font-family: 'ageo'; 
+    font-weight : bold; 
+    src: url('fonts/ageo/ageo-bold.otf') format('otf'),
+       url('fonts/ageo/ageo-extrabold.otf') format('otf')
+  }
+  
+  .font-face {
+    font-family: 'ageo'; 
+    font-weight : light; 
+    src: url('fonts/ageo/ageo-bold.otf') format('otf'), 
+  }
+  
+  .font-face {
+    font-family: 'ageo'; 
+    font-weight : medium; 
+    src: url('fonts/ageo/ageo-medium.otf') format('otf')
+  }
+  
+  .font-face {
+    font-family: 'ageo'; 
+    font-weight : heavy; 
+    src: url('fonts/ageo/ageo-heavy.otf') format('otf')
+  }
+  
+  .font-face {
+    font-family: 'ageo'; 
+    font-weight : thin; 
+    src: url('fonts/ageo/ageo-thin.otf') format('otf'), 
+  }
+  
+  /* ageo font family definition */ 
+  
+  
+  
+  /* ageo font function */ 
+  .ageo 
+  {
+    font-family: 'ageo', sans-serif;
+    font-weight: thin; 
+  }
+  /* ageo font function */ 
+  
+  body {
+    background-color: #87212e;
+  }
+  
+  h1 {
+    color: white;
+    text-align: center;
+    font-family: 'ageo', sans-serif;
+  }
+  
+  .button-container {
+    text-align: center;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 40px 30px;
+    background-color: white;
+    color: #87212e;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    font-size: 18px;
+    font-family : "ageo", sans-serif; 
+  }
+  
+  .center 
+  {
+    text-align : center; 
+  }
+  
+  .left 
+  {
+    text-align : left; 
+  }
+  
+  .right 
+  {
+    text-align : right; 
+  }
+  .ishidden 
+  {
+    display : none; 
+  }
+
+
+</style>
+</head>
+
+<body>
+
+  <h1> The ARC </h1>
+
+  <div class="button-container">
+    <a href="#" id="btn1" class="button"> Mrs. Kulp</a>
+    <a href="#" id="btn2" class="button"> Mrs. Hurtado</a>
+  </div>
+
+  <div id="popup1" class="ishidden">
+    <a href="#" id="popup11" class="button"> Link To Mrs. Kulp </a>
+  </div>
+
+
+  <div id="popup2" class="ishidden">
+    <a href="#" id="popup22" class="button"> Link To Mrs. Hurtado </a>
+  </div>
+
+</body>
+
+</html>
