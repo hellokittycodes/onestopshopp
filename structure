@@ -1,0 +1,32 @@
+onestopshop 
+--views 
+   - __init__.py
+   - views.py
+   --__pycache__
+       - views.cpython-310.pyc
+--auth
+   - __init__.py
+   - auth.py
+   --__pycache__
+       - auth.cpython-310.pyc
+       
+-- __pycache__
+   - auth.cpython-310.pyc
+   - views.cpython-310.pyc
+   - __init__.cpython-310.pyc
+
+--website
+   --templates 
+      - arc.html
+      - calendly.html
+      - index.html
+   --static 
+      - main.js
+      - styles.css
+   --images 
+      - usfloor1.png
+      - usfloor2.png
+      - usfloor3.png
+- __init__.py
+- main.py
+- models.py
