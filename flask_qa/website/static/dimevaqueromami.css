@@ -7,7 +7,7 @@
 .container {
     width: 85%;
     height: 100vh;
-    background-image: url(images/homepage.png), linear-gradient(#90565e, #6a0b18); /* Reversed the order of the background layers */
+    background-image: url(flaskqa/website/static/images/homepage1.png), linear-gradient(#90565e, #6a0b18); /* Reversed the order of the background layers */
     background-position: center;
     background-size: cover;
     padding-left: 8%; 
