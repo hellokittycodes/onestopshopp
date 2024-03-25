@@ -7,7 +7,9 @@ def create_app():
     app.config['SECRET_KEY'] = 'summerwalker'
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
-    app.static_folder = 'static'
+    # Update the static folder configuration
+    app.static_folder = 'website/static'
+
     return app
 
 app = create_app()
@@ -25,6 +27,20 @@ def calendly():
 def arc():
     print('went to arc')
     return render_template("arc.html")
+
+# Update the routes to render the correct HTML templates
+@app.route("/search")
+def search():
+    return render_template("search.html")
+
+@app.route("/teacherlist")
+def teacherlist():
+    return render_template("teacherlist.html")
+
+@app.route("/scheduling")
+def scheduling():
+    return render_template("scheduling.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=8080)

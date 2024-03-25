@@ -1,0 +1,71 @@
+<!DOCTYPE html> 
+<html>
+<head> 
+    <title>Search for Faculty Schedule</title>
+    <style> 
+        h1 {
+            text-align: center; 
+            font-size: 80px; 
+        }
+        form {
+            width: 90%; 
+            max-width: 600px; 
+            margin: auto; 
+            height: 80px; 
+            background: #EEEEEE; 
+            display: flex; 
+            align-items: center; 
+            border-radius: 8px; 
+        }
+        form input {
+            flex: 1; 
+            height: 100%; 
+            border: 0; 
+            outline: 0; 
+            background: transparent; 
+            color: black; 
+            font-size: 20px; 
+            padding : 0 30px; 
+        }
+        form button {
+            padding: 0 40px; 
+            height : 100%; 
+            background : #fff; 
+            color: blue; 
+            font-size: 20px; 
+            border: 0; 
+            outline: 0; 
+            border-top-right-radius: 8px; 
+            border-bottom-right-radius: 8px;  
+            cursor: pointer; 
+        }
+        ::placeholder {
+            color: black; 
+            font-size: 20px; 
+        }
+        #show-more-btn {
+            background: purple; 
+            color: black; 
+            border: 0; 
+            outline: 0; 
+            padding: 10px 20px; 
+            border-radius: 4px; 
+            margin: 10px auto 100px; 
+            cursor: pointer; 
+            display: block; 
+        }
+    </style> 
+    <button onclick="window.location.href='index.html'">Teacher Names</button>
+</head>
+<body> 
+    <h1>Search for Faculty</h1>
+    <form class="search">
+        <input type="text" id="search-box" placeholder="Last Names Only"> 
+        <button id="button1">Search</button>
+    </form> 
+    <table id="teacherdata1"></table>
+    <button id="button"> Search </button>
+    <div id="search-result"></div>
+    <script src="{{ url_for('static', filename='mainn.js') }}"></script>
+</body>
+</html>
