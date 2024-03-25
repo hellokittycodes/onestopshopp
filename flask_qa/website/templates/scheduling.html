@@ -1,8 +1,11 @@
-<!DOCTYPE html> 
-<html> 
-    <head> 
-        <style>
-            *{ 
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* Include scheduling.css styles here */
+        /* Paste the contents of scheduling.css here */
+        *{ 
     margin: 0; 
     padding: 0; 
 
@@ -86,44 +89,48 @@ tbody tr:nthchild(even){
 tbody tr:hover{
     background-color : #fff6; 
 }
-        </style>
-    </head>
-    <body> 
-        <main class="table"> 
-            <section class="tableheader"></section>
-            <section class="tablebody">
-                <input type="text" id="search-box" placeholder="Enter name...">
-                <button onclick="inputting()">Search</button>
-                <table>
-                    <thead> 
-                        <tr> 
-                            <!-- headers -->
-                            <th> A </th> 
-                            <th> B </th>
-                            <th> C </th>
-                            <th> D </th>
-                            <th> E </th>
-                            <th> F </th>
-                            <th> EMAIL </th>
-                        </tr>
-                    </thead> 
-                    <tbody>
-                        <tr>
-                            <!-- body -->
-                            <td id="a">602</td>
-                            <td id="b">602</td>
-                            <td id="c">602</td>
-                            <td id="d">602</td>
-                            <td id="e">602</td>
-                            <td id="f">602</td>
-                            <td id="email">email@gmail.com</td>
-                        </tr> 
-                    </tbody>
-                </table>
-            </section>
-        </main>
-        <!-- Include jQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="doublemain.js"></script>
-    </body>
+    </style>
+</head>
+
+<body>
+    <main class="table">
+        <section class="tableheader"></section>
+        <section class="tablebody">
+            <input type="text" id="search-box" placeholder="Enter name...">
+            <button onclick="inputting()">Search</button>
+            <table>
+                <thead>
+                    <tr>
+                        <!-- headers -->
+                        <th>A</th>
+                        <th>B</th>
+                        <th>C</th>
+                        <th>D</th>
+                        <th>E</th>
+                        <th>F</th>
+                        <th>EMAIL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!-- body -->
+                        <td id="a">602</td>
+                        <td id="b">602</td>
+                        <td id="c">602</td>
+                        <td id="d">602</td>
+                        <td id="e">602</td>
+                        <td id="f">602</td>
+                        <td id="email">email@gmail.com</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Include jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Include doublemain.js -->
+    <script src="doublemain.js"></script>
+</body>
+
 </html>
