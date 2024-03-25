@@ -92,7 +92,7 @@
         <section class="tableheader"></section>
         <div class="tablebody">
             <input type="text" id="search-box" placeholder="Enter name...">
-            <button onclick="inputting()">Search</button>
+            <button id="button">Search</button>
             <table>
                 <thead>
                     <tr>
@@ -140,52 +140,58 @@
             return JSON.parse(jsonData);
         }
 
+    
         function inputting() {
-            console.log("Running inputting function");
-            const data = loadJSON();
-            if (!data) {
-                console.error("Data not found in local storage");
-                return;
-            }
+    const data = loadJSON();
+    if (!data) {
+        console.error("Data not found in local storage");
+        return;
+    }
+    const userInput = document.getElementById("search-box").value.toLowerCase(); 
+    const tbody = document.querySelector("tbody");
+    tbody.innerHTML = ''; // Clear existing rows
+    
+    // Loop through the data to find the matching row
+    for (let i = 1; i < data.table.rows.length; i++) {
+        const nameObject = data.table.rows[i].c[1];
+        if (nameObject && nameObject.v) { // Check if nameObject and nameObject.v are not null or undefined
+            const name = nameObject.v.toLowerCase();
+            if (name === userInput) {
+                console.log("Match found for user input:", name);
 
-            const userInput = document.getElementById("search-box").value.toLowerCase();
-            console.log("User input:", userInput);
-
-            const tbody = document.querySelector("tbody");
-            const rows = tbody.querySelectorAll("tr");
-
-            for (let i = 0; i < rows.length; i++) {
-                let name = data.table.rows[i + 1].c[1].v.toLowerCase(); // Adjusted index since data starts from index 1
-                if (name === userInput) {
-                    console.log("Match found for user input:", name);
-                    let output = data.table.rows[i + 1].c[0].v; // Adjusted index since data starts from index 1
-                    let cells = rows[i].querySelectorAll("td");
-                    cells[0].innerHTML = "NEW NAME"; // Adjusted index since data starts from index 1
-                    cells[0].innerHTML = data.table.rows[i + 1].c[2].v.toString(); // Adjusted index since data starts from index 1
-                    cells[1].innerHTML = data.table.rows[i + 1].c[3].v.toString();
-                    cells[2].innerHTML = data.table.rows[i + 1].c[4].v.toString();
-                    cells[3].innerHTML = data.table.rows[i + 1].c[5].v.toString();
-                    cells[4].innerHTML = data.table.rows[i + 1].c[6].v.toString();
-                    cells[5].innerHTML = data.table.rows[i + 1].c[7].v.toString();
-                    cells[6].innerHTML = data.table.rows[i + 1].c[8].v.toString();
-                    return; // Exit the loop after finding the first match
+                const newRow = document.createElement("tr");
+                for (let j = 2; j < data.table.rows[i].c.length; j++) { // Start from index 2 to skip the first column
+                    const newCell = document.createElement("td");
+                    if (data.table.rows[i].c[j] && data.table.rows[i].c[j].v) { // Check if data.table.rows[i].c[j] and data.table.rows[i].c[j].v are not null or undefined
+                        newCell.textContent = data.table.rows[i].c[j].v.toString();
+                    } else {
+                        newCell.textContent = "null";
+                    }
+                    newRow.appendChild(newCell);
                 }
+
+                tbody.appendChild(newRow);
+                return; // Exit the loop after finding the first match
             }
-
-            console.log("No match found for user input:", userInput);
         }
+    }
 
-        document.addEventListener("DOMContentLoaded", function () {
-            console.log("Document ready, initiating data fetch");
-            fetch(FULL_URL)
-                .then(res => res.text())
-                .then(rep => {
-                    let data = JSON.parse(rep.substr(47).slice(0, -2));
-                    console.log("Data fetched successfully:", data);
-                    saveJSON(data);
-                })
-                .catch(error => console.error("Error fetching data:", error));
-        });
+    console.log("No match found for user input:", userInput);
+}
+
+document.getElementById("button").addEventListener("click", inputting); // Add event listener to button
+
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Document ready, initiating data fetch");
+    fetch(FULL_URL)
+        .then(res => res.text())
+        .then(rep => {
+            let data = JSON.parse(rep.substr(47).slice(0, -2));
+            console.log("Data fetched successfully:", data);
+            saveJSON(data);
+        })
+        .catch(error => console.error("Error fetching data:", error));
+});
     </script>
 </body>
 
