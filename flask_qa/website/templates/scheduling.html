@@ -5,97 +5,92 @@
     <style>
         /* Include scheduling.css styles here */
         /* Paste the contents of scheduling.css here */
-        *{ 
-    margin: 0; 
-    padding: 0; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
 
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    box-sizing: border-box; 
-    font-family: sans-serif;
-    
-}
+        main.table {
+            width: 82vw;
+            height: 90vh;
+            background-color: #fff5;
+            backdrop-filter: blur(7px);
+            box-shadow: 0 .4rem .8rem #000000aa;
+            border-radius: .8rem;
+            overflow: hidden;
+        }
 
-body {
-    min-height: 100vh;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-}
+        .tableheader {
+            width: 100%;
+            height: 10%;
+            background-color: #fff5;
+            padding: .8rem 1;
+        }
 
-main.table {
-    width: 82vw; 
-    height : 90vh; 
-    background-color: #fff5; 
-    backdrop-filter: blur(7px); 
-    box-shadow: 0 .4rem .8rem #000000aa; 
-    border-radius: .8rem; 
-    overflow: hidden; 
-}
+        .tablebody::-webkit-scrollbar {
+            width: 0.5rem;
+            height: 0.5rem;
+        }
 
-.tableheader{
-    width: 100%; 
-    height: 10%; 
-    background-color: #fff5; 
-    padding: .8rem 1; 
+        .tablebody::-webkit-scrollbar-thumb {
+            border-radius: .5rem;
+            background-color: #0000;
+            visibility: hidden;
+        }
 
+        .tablebody:hover::-webkit-scrollbar-thumb {
+            visibility: visible;
+        }
 
-}
+        table {
+            width: 100%;
+        }
 
-.tablebody_::-webkit-scrollbar{
-    width: 0.5rem; 
-    height: 0.5rem; 
-}
+        .tablebody {
+            width: 36px;
+            height: 36px;
+            margin-right: .5rem;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
 
-.tablebody_::-webkit-scrollbar-thumb{
-    border-radius: .5rem; 
-    background-color: #0000; 
-    visibility: hidden; 
-}
+        table,
+        th,
+        td {
+            padding: 1rem;
+            border-collapse: collapse;
+        }
 
-.tablebody_:hover:-webkit-scrollbar-thumb{
-    visibility: visible;
-}
+        thead th {
+            position: sticky;
+            top: 0;
+            left: 0;
+            background-color: #ffff;
+        }
 
-table {
-    width: 100%; 
-}
+        tbody tr:nth-child(even) {
+            background-color: #0000;
+        }
 
-.tablebody
-{
-    width: 36px; 
-    height: 36px; 
-    margin-right: .5rem; 
-    border-radius: 50%; 
-    vertical-align: middle; 
-}
-table, th, td {
-    padding : 1rem; 
-    border-collapse: collapse; 
-
-}
-
-thead th{
-    position : sticky; 
-    top: 0; 
-    left: 0; 
-    background-color: #ffff; 
-
-}
-
-tbody tr:nthchild(even){
-    background-color: #0000; 
-}
-
-tbody tr:hover{
-    background-color : #fff6; 
-}
+        tbody tr:hover {
+            background-color: #fff6;
+        }
     </style>
 </head>
 
 <body>
     <main class="table">
         <section class="tableheader"></section>
-        <section class="tablebody">
+        <div class="tablebody">
             <input type="text" id="search-box" placeholder="Enter name...">
             <button onclick="inputting()">Search</button>
             <table>
@@ -124,9 +119,80 @@ tbody tr:hover{
                     </tr>
                 </tbody>
             </table>
-        </section>
+        </div>
     </main>
     <!-- Include doublemain.js -->
-    <script src="{{ url_for('static', filename='doublemain.js') }}"></script>
-</body>
-</html>
+    <script>
+        let SHEET_ID = '1PwuLU4j3HbBFNkbwVR9_TFwqNq7-AGA_1KHCUxCwksk';
+        let SHEET_TITLE = 'teacher_names';
+        let SHEET_RANGE = 'B3:J27';
+        let FULL_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/gviz/tq?sheet=' + SHEET_TITLE + '&range=' + SHEET_RANGE;
+
+        console.log("Fetching data from:", FULL_URL);
+
+        function hello() {
+            console.log("hello");
+        }
+
+        function saveJSON(data) {
+            localStorage.setItem('data', JSON.stringify(data));
+            console.log("Data saved to local storage:", data);
+        }
+
+        function loadJSON() {
+            const jsonData = localStorage.getItem('data');
+            console.log("Loading data from local storage:", jsonData);
+            return JSON.parse(jsonData);
+        }
+
+        function inputting() {
+            console.log("Running inputting function");
+            const data = loadJSON();
+            if (!data) {
+                console.error("Data not found in local storage");
+                return;
+            }
+
+            const userInput = document.getElementById("search-box").value.toLowerCase();
+            console.log("User input:", userInput);
+
+            for (let i = 0; i < data.table.rows.length; i++) {
+                let name = data.table.rows[i].c[1].v.toLowerCase();
+                if (name === userInput) {
+                    console.log("Match found for user input:", name);
+                    let output = data.table.rows[i].c[0].v;
+                    var a = document.getElementById('a');
+                    var b = document.getElementById('b');
+                    var c = document.getElementById('c');
+                    var d = document.getElementById('d');
+                    var e = document.getElementById('e');
+                    var f = document.getElementById('f');
+                    var email = document.getElementById('email');
+
+                    var tr = document.querySelector("tbody tr");
+                    tr.children[0].innerHTML = "NEW NAME";
+                    a.innerHTML = data.table.rows[i].c[2].v.toString();
+                    b.innerHTML = data.table.rows[i].c[3].v.toString();
+                    c.innerHTML = data.table.rows[i].c[4].v.toString();
+                    d.innerHTML = data.table.rows[i].c[5].v.toString();
+                    e.innerHTML = data.table.rows[i].c[6].v.toString();
+                    f.innerHTML = data.table.rows[i].c[7].v.toString();
+                    email.innerHTML = data.table.rows[i].c[8].v.toString();
+                    return; // Exit the loop after finding the first match
+                }
+            }
+
+            console.log("No match found for user input:", userInput);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("Document ready, initiating data fetch");
+            fetch(FULL_URL)
+                .then(res => res.text())
+                .then(rep => {
+                    let data = JSON.parse(rep.substr(47).slice(0, -2));
+                    console.log("Data fetched successfully:", data);
+                    saveJSON(data);
+                })
+                .catch(error => console.error("Error fetching data:", error));
+});
